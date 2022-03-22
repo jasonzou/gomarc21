@@ -146,23 +146,3 @@ func (l Leader) GetBaseAddressOfData() int {
 	// record base address of data of a record
 	return l.BaseAddressOfData
 }
-
-// RecordFormat indicates the high level nature of the record and is
-// used to differentiate between Bibliography, Holdings, Authority,
-// Classification, and Community record formats.
-func (rec Record) RecordFormat() int {
-	code := pluckByte(rec.Leader.Text, 6) //?????
-	switch code {
-	case "q":
-		return Community
-	case "z":
-		return Authority
-	case "w":
-		return Classification
-	case "u", "v", "x", "y":
-		return Holdings
-	case "a", "c", "d", "e", "f", "g", "i", "j", "k", "m", "o", "p", "r", "t":
-		return Bibliography
-	}
-	return FormatUnknown
-}
