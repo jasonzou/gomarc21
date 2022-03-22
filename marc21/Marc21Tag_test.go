@@ -19,33 +19,31 @@ func TestGetTag(test *testing.T) {
 func TestIsControlTag(test *testing.T) {
 }
 
-func TestIsDataTag(test *testing.T) {
-}
+func TestIsDataTag(test1 *testing.T) {
 
-func main() {
 	var t Tag
 	t.Tag1 = '1'
 	t.Tag2 = '2'
 	t.Tag3 = '3'
 
 	fmt.Println(t.GetTag())
-	err, test := t.IsControlTag()
+	test, err := t.IsControlTag()
 	if err == nil {
 		fmt.Println(test)
 	}
-	err, test = t.IsDataTag()
+	test, err = t.IsDataTag()
 	if err == nil {
 		fmt.Println(test, "data tag")
 	}
 	t.Tag1 = '0'
 	t.Tag2 = '0'
 	t.Tag3 = 'z'
-	err, test = t.IsControlTag()
+	test, err = t.IsControlTag()
 	if err == nil {
 		fmt.Println(test)
 	}
 	t.Tag2 = '#'
-	err, test = t.IsDataTag()
+	test, err = t.IsDataTag()
 	fmt.Println(t.GetTag())
 	if err == nil {
 		fmt.Println(test, "data tag")
