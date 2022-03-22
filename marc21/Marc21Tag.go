@@ -1,10 +1,8 @@
-//package gomarc21
-package main
+package gomarc21
 
 import (
 	"errors"
 	"fmt"
-	"reflect"
 )
 
 type Tag struct {
@@ -13,20 +11,21 @@ type Tag struct {
 	Tag3 byte // for Data fields
 }
 
-func NewTag(tagStr string) (error, Tag){
+func NewTagByStr(tagStr string) (error, Tag) {
 	tagBytes := []byte(tagStr)
-	err, tag = NewTag(tagBytes)
+	err, tag := NewTag(tagBytes)
 	return err, tag
 }
 
-func NewTag(tagBytes []bytes) (error, Tag){
+func NewTag(tagBytes []byte) (error, Tag) {
 	if len(tagBytes) != 3 {
 		msg := fmt.Sprintf("The length of a tag is 3, but found %d instead", len(tagBytes))
-		err := error.New(msg)
-		return err, nil
+		err := errors.New(msg)
+		return err, Tag{'0', '0', '0'}
 	}
+
 	var tag Tag
-	// need to check each byte 
+	// need to check each byte
 	tag.Tag1 = tagBytes[0]
 	tag.Tag2 = tagBytes[1]
 	tag.Tag3 = tagBytes[2]
@@ -37,8 +36,8 @@ func NewTag(tagBytes []bytes) (error, Tag){
 			}
 		}
 	}
-	err := error.New("The tag string is invalid.")
-	return err, nil
+	err := errors.New("The tag string is invalid.")
+	return err, Tag{'0', '0', '0'}
 }
 
 func (tag *Tag) GetTag() string {

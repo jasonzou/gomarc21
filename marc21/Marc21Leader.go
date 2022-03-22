@@ -147,6 +147,8 @@ func (l Leader) GetBaseAddressOfData() int {
 	return l.BaseAddressOfData
 }
 
+/*
+
 // RecordFormat indicates the high level nature of the record and is
 // used to differentiate between Bibliography, Holdings, Authority,
 // Classification, and Community record formats.
@@ -287,3 +289,4 @@ func (rec Record) BibliographyMaterialType() (code, label string) {
 func (ldr Leader) GetText() string {
 	return ldr.Text
 }
+*/

@@ -1,10 +1,7 @@
-//package gomarc21
-package main
+package gomarc21
 
 import (
-	"errors"
 	"fmt"
-	"reflect"
 	"testing"
 )
 
@@ -14,9 +11,9 @@ func TestGetTag(test *testing.T) {
 	t.Tag2 = '2'
 	t.Tag3 = '3'
 
-	if (t.GetTag() != "123"){
+	if t.GetTag() != "123" {
 		test.Error("Tag no should be 123, but ", t.GetTag())
-	}	
+	}
 }
 
 func TestIsControlTag(test *testing.T) {
