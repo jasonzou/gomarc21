@@ -87,24 +87,24 @@ type Leader struct {
 }
 
 // NewLeader creates a Leader from the data in the MARC record.
-func NewLeader(bytes []byte) (error, Leader) {
+func NewLeader(bytes []byte) (Leader, error) {
 	if len(bytes) != 24 {
-		return errors.New("Incomplete leader"), Leader{}
+		return Leader{}, errors.New("incomplete leader")
 	}
 
 	recordLen, err := strconv.Atoi(string(bytes[0:5]))
 
 	if err != nil {
-		msg := fmt.Sprintf("Could not determine the length of the record from leader (%s)", string(bytes))
+		msg := fmt.Sprintf("could not determine the length of the record from leader (%s)", string(bytes))
 		err = errors.New(msg)
-		recordLen = -1
+		return Leader{}, err
 	}
 
 	offset, err := strconv.Atoi(string(bytes[12:17]))
 	if err != nil {
-		msg := fmt.Sprintf("Could not determine data offset from leader (%s)", string(bytes))
+		msg := fmt.Sprintf("could not determine data offset from leader (%s)", string(bytes))
 		err = errors.New(msg)
-		offset = -1
+		return Leader{}, err
 	}
 
 	leader := Leader{
@@ -126,7 +126,7 @@ func NewLeader(bytes []byte) (error, Leader) {
 		LengthOfTheImplementationDefinedPortion: bytes[22],
 		Undefined:                               bytes[23],
 	}
-	return err, leader
+	return leader, err
 }
 
 func (l Leader) String() string {
@@ -134,7 +134,7 @@ func (l Leader) String() string {
 }
 
 func (l Leader) Raw() string {
-	return fmt.Sprintf("%s", string(l.raw))
+	return string(l.raw)
 }
 
 func (l Leader) GetRecordLength() int {
@@ -146,8 +146,6 @@ func (l Leader) GetBaseAddressOfData() int {
 	// record base address of data of a record
 	return l.BaseAddressOfData
 }
-
-/*
 
 // RecordFormat indicates the high level nature of the record and is
 // used to differentiate between Bibliography, Holdings, Authority,
@@ -166,127 +164,5 @@ func (rec Record) RecordFormat() int {
 	case "a", "c", "d", "e", "f", "g", "i", "j", "k", "m", "o", "p", "r", "t":
 		return Bibliography
 	}
-	return FmtUnknown
+	return FormatUnknown
 }
-
-// RecordFormatName indicates the name of the format of the record and is
-// used to differentiate between Bibliography, Holdings, Authority,
-// Classification, and Community record formats.
-func (rec Record) RecordFormatName() string {
-	f := rec.RecordFormat()
-	n := marcFormatName[f]
-	return n
-}
-
-//  06 - Type of record
-var recordType = map[string]string{
-	// Bibliography
-	"a": "Language material",
-	"c": "Notated music",
-	"d": "Manuscript notated music",
-	"e": "Cartographic material",
-	"f": "Manuscript cartographic material",
-	"g": "Projected medium",
-	"i": "Nonmusical sound recording",
-	"j": "Musical sound recording",
-	"k": "Two-dimensional nonprojectable graphic",
-	"m": "Computer file",
-	"o": "Kit",
-	"p": "Mixed materials",
-	"r": "Three-dimensional artifact or naturally occurring object",
-	"t": "Manuscript language material",
-	// Holding
-	"u": "Unknown",
-	"v": "Multipart item holdings",
-	"x": "Single-part item holdings",
-	"y": "Serial item holdings",
-	// Classification
-	"w": "Classification data",
-	// Authority
-	"z": "Authority data",
-	// Community
-	"q": "Community information",
-}
-
-// RecordType returns the one character code and label indicating
-// the "06 - Type of record" for the record. Use RecordFormat
-// to determine the record format (bibliographic, holdings, etc.)
-func (rec Record) RecordType() (code, label string) {
-	return shortCodeLookup(recordType, rec.Leader.Text, 6)
-}
-
-//  09 - Character coding scheme
-var characterCodingScheme = map[string]string{
-	" ": "MARC-8",
-	"a": "UCS/Unicode",
-}
-
-// CharacterCodingScheme returns the code and label indicating the
-// "09 - Character coding scheme" of the record (MARC-8 or UCS/Unicode).
-func (rec Record) CharacterCodingScheme() (code, label string) {
-	return shortCodeLookup(characterCodingScheme, rec.Leader.Text, 9)
-}
-
-////////////////////////////////////////////////////////////////////////
-// Lookup data for Bibliography records
-
-var bibliographyMaterialType = map[string]string{
-	"BK": "Books",
-	"CF": "Computer Files",
-	"MP": "Maps",
-	"MU": "Music",
-	"CR": "Continuing Resources",
-	"VM": "Visual Materials",
-	"MX": "Mixed Materials",
-}
-
-// BibliographyMaterialType returns the code and description of the type
-// of material documented by Bibliography the record.
-// {"Books",  "Computer Files", "Maps", "Music", "Continuing Resources",
-// "Visual Materials" or "Mixed Materials"}
-func (rec Record) BibliographyMaterialType() (code, label string) {
-	rectype := pluckByte(rec.Leader.Text, 6)
-
-	// the simple record type to material type mappings
-	var rtmap = map[string]string{
-		"c": "MU",
-		"d": "MU",
-		"i": "MU",
-		"j": "MU",
-		"e": "MP",
-		"f": "MP",
-		"g": "VM",
-		"k": "VM",
-		"o": "VM",
-		"r": "VM",
-		"m": "CF",
-		"p": "MX",
-	}
-
-	code, ok := rtmap[rectype]
-	if !ok {
-		// no simple match
-		biblevel := pluckByte(rec.Leader.Text, 7)
-		switch biblevel {
-		case "a", "c", "d", "m":
-			if rectype == "a" || rectype == "t" {
-				code = "BK"
-			}
-		case "b", "i", "s":
-			if rectype == "a" {
-				code = "CR"
-			}
-		}
-	}
-
-	label = bibliographyMaterialType[code]
-	return code, label
-}
-
-////////////////////////////////////////////////////////////////////////
-
-// GetText returns the text for the leader
-func (ldr Leader) GetText() string {
-	return ldr.Text
-}
-*/
