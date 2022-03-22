@@ -1,0 +1,31 @@
+CGO_ENABLED=0
+
+all: marc2xml mrk2xml marc2json mrk2json marclint marcdiff 
+
+marc2xml: cmd/marc2xml.go
+	go get -v ./...
+	CGO_ENABLED=$(CGO_ENABLED) go build -o $@ $<
+
+mrk2xml: cmd/mrk2xml.go
+	go get -v ./...
+	CGO_ENABLED=$(CGO_ENABLED) go build -o $@ $<
+
+marc2json: cmd/marc2json.go
+	go get -v ./...
+	CGO_ENABLED=$(CGO_ENABLED) go build -o $@ $<
+
+mrk2json: cmd/mrk2json.go
+	go get -v ./...
+	CGO_ENABLED=$(CGO_ENABLED) go build -o $@ $<
+
+marclint: cmd/marclint.go
+	go get -v ./...
+	CGO_ENABLED=$(CGO_ENABLED) go build -o $@ $<
+
+marcdiff: cmd/marcdiff.go
+	go get -v ./...
+	CGO_ENABLED=$(CGO_ENABLED) go build -o $@ $<
+
+
+clean:
+	rm -f dist/*

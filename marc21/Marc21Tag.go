@@ -13,10 +13,36 @@ type Tag struct {
 	Tag3 byte // for Data fields
 }
 
+func NewTag(tagStr string) (error, Tag){
+	tagBytes := []byte(tagStr)
+	err, tag = NewTag(tagBytes)
+	return err, tag
+}
+
+func NewTag(tagBytes []bytes) (error, Tag){
+	if len(tagBytes) != 3 {
+		msg := fmt.Sprintf("The length of a tag is 3, but found %d instead", len(tagBytes))
+		err := error.New(msg)
+		return err, nil
+	}
+	var tag Tag
+	// need to check each byte 
+	tag.Tag1 = tagBytes[0]
+	tag.Tag2 = tagBytes[1]
+	tag.Tag3 = tagBytes[2]
+	if tag.Tag1 >= '0' && tag.Tag1 <= 'z' {
+		if tag.Tag2 >= '0' && tag.Tag2 <= 'z' {
+			if tag.Tag3 >= '0' && tag.Tag3 <= 'z' {
+				return nil, tag
+			}
+		}
+	}
+	err := error.New("The tag string is invalid.")
+	return err, nil
+}
+
 func (tag *Tag) GetTag() string {
 	myTag := fmt.Sprintf("%c%c%c", tag.Tag1, tag.Tag2, tag.Tag3)
-	fmt.Println(myTag)
-	fmt.Println(reflect.TypeOf(myTag))
 	return myTag
 }
 
@@ -67,36 +93,4 @@ func (tag *Tag) IsDataTag() (error, bool) {
 	}
 
 	return errors.New("Invalid data tag"), false
-}
-
-func main() {
-	var t Tag
-	t.Tag1 = '1'
-	t.Tag2 = '2'
-	t.Tag3 = '3'
-
-	fmt.Println(t.GetTag())
-	err, test := t.IsControlTag()
-	if err == nil {
-		fmt.Println(test)
-	}
-	err, test = t.IsDataTag()
-	if err == nil {
-		fmt.Println(test, "data tag")
-	}
-	t.Tag1 = '0'
-	t.Tag2 = '0'
-	t.Tag3 = 'z'
-	err, test = t.IsControlTag()
-	if err == nil {
-		fmt.Println(test)
-	}
-	t.Tag2 = '#'
-	err, test = t.IsDataTag()
-	fmt.Println(t.GetTag())
-	if err == nil {
-		fmt.Println(test, "data tag")
-	} else {
-		fmt.Println(err)
-	}
 }
