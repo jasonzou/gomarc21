@@ -19,4 +19,4 @@ Another golang implementation of MARC 21.
 ## Revision History
 
 - March 23, 2022 version 0.0.2, Marc21Record.go is working...
-- March 19, 2022 Initial version (0.0.1) created based marcnet, other marc21 golang implementations
+- March 21, 2022 Initial version (0.0.1) created based marcnet, other marc21 golang implementations
