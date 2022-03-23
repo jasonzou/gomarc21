@@ -1,12 +1,9 @@
 package gomarc21
 
 import (
-	"bytes"
 	"fmt"
-	"io"
 	"log"
 	"os"
-	"strings"
 	"testing"
 )
 
@@ -137,6 +134,7 @@ func TestRecordAsMARC(test *testing.T) {
 
 }
 
+/*
 // TestReadEmpty tests readings a record without fields.
 func TestReadEmpty(t *testing.T) {
 	file, err := os.Open("fixtures/r0.mrc")
@@ -234,17 +232,6 @@ func TestReader(t *testing.T) {
 			t.Fatal(err)
 		}
 		count++
-		/*
-			r.XML(os.Stdout)
-			log.Print(record)
-				buf := &bytes.Buffer{}
-				err = record.XML(buf)
-				if err != nil {
-					log.Fatal(err)
-				}
-				log.Print(string(buf.Bytes()))
-				break
-		*/
 	}
 	if count != exp {
 		t.Errorf("Expected to read %d records, got %d", exp, count)
@@ -255,7 +242,7 @@ func TestReader(t *testing.T) {
 func TestString(t *testing.T) {
 	const exp = `001 50001
 005 20010903131819.0
-008 701012s1970    moua     b    001 0 eng  
+008 701012s1970    moua     b    001 0 eng
 010 [  ] [(a)    73117956 ]
 035 [  ] [(a) ocm00094426 ]
 035 [  ] [(9) 7003024381]
@@ -599,7 +586,7 @@ Record 85: (a) Dante - the Divine comedy :`
 func TestAppendField(t *testing.T) {
 	const exp = `001 50001
 005 20010903131819.0
-008 701012s1970    moua     b    001 0 eng  
+008 701012s1970    moua     b    001 0 eng
 010 [  ] [(a)    73117956 ]
 035 [  ] [(a) ocm00094426 ]
 035 [  ] [(9) 7003024381]
@@ -639,3 +626,4 @@ func TestAppendField(t *testing.T) {
 		t.Errorf("Output record string %s did not match expected string", out)
 	}
 }
+*/

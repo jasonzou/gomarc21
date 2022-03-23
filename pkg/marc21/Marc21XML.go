@@ -2,12 +2,6 @@ package gomarc21
 
 import (
 	"encoding/xml"
-	"errors"
-	"fmt"
-	"io"
-	"os"
-
-	marc "github.com/jasonzou/gomarc21/marc21.old"
 )
 
 // A MARC Record Set is for containing zero or more MARC records
@@ -43,6 +37,7 @@ const xmlProlog = `<?xml version="1.0" encoding="UTF-8"?>`
 const xmlRootBegin = `<collection xmlns="http://www.loc.gov/MARC21/slim" xmlns:marc="http://www.loc.gov/MARC21/slim">`
 const xmlRootEnd = `</collection>`
 
+/*
 func toXML(params ProcessFileParams) error {
 	if count == 0 {
 		return nil
@@ -209,3 +204,4 @@ func (rec Record) RecordAsXML() (marc []byte, err error) {
 
 	return marc, nil
 }
+*/

@@ -1,15 +1,4 @@
-package main
-
-import (
-	"encoding/json"
-	"errors"
-	"fmt"
-	"io"
-	"os"
-	"strings"
-
-	"github.com/hectorcorrea/marcli/pkg/marc"
-)
+package gomarc21
 
 type SolrDocument struct {
 	Id              string   `json:"id"`
@@ -28,6 +17,7 @@ type SolrDocument struct {
 	SubjectsGeo     []string `json:"subjectsGeo_txts_en,omitempty"`
 }
 
+/*
 func NewSolrDocument(r marc.Record) SolrDocument {
 	doc := SolrDocument{}
 	id := r.GetValue("001", "")
@@ -151,3 +141,4 @@ func trimPeriod(s string) string {
 	}
 	return s
 }
+*/
