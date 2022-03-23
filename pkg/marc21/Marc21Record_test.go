@@ -121,3 +121,15 @@ func TestParseRecord(test *testing.T) {
 	}
 
 }
+
+func TestNextRecord(test *testing.T) {
+
+}
+
+func TestParseNextRecord(test *testing.T) {
+
+}
+
+func TestRecordAsMARC(test *testing.T) {
+
+}

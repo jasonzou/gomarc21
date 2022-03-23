@@ -270,3 +270,144 @@ func ReadRecord(reader io.Reader) (record Record, err error) {
 
 	return record, nil
 }
+
+// NextRecord reads the next MARC record and returns the unparsed bytes
+func NextRecord(reader io.Reader) (rawRec []byte, err error) {
+
+	// Read the first 5 bytes, determine the record length and
+	//    read the remainder of the record
+	rawLen := make([]byte, 5)
+	_, err = reader.Read(rawLen)
+	if err != nil {
+		return nil, err
+	}
+
+	recLen, err := strconv.Atoi(string(rawLen[0:5]))
+	if err != nil {
+		return nil, err
+	}
+
+	// Ensure that we have a "sane" record length?
+	if recLen <= LEADER_LEN {
+		err = errors.New("MARC record is too short")
+		return nil, err
+	} else if recLen > MAX_RECORD_LEN {
+		err = errors.New("MARC record is too long")
+		return nil, err
+	}
+
+	rawRec = make([]byte, recLen)
+	// ensure that the raw len is available for the leader
+	copy(rawRec, rawLen)
+
+	// Read the remainder of the record
+	_, err = reader.Read(rawRec[5:recLen])
+	if err != nil {
+		return nil, err
+	}
+
+	// The last byte should be a record terminator
+	if rawRec[len(rawRec)-1] != END_OF_RECORD {
+		return nil, errors.New("Record terminator not found at end of record")
+	}
+	// other issues?
+
+	return rawRec, nil
+}
+
+// ParseNextRecord reads the next MARC record and returns the parsed
+// record structure
+func ParseNextRecord(reader io.Reader) (record Record, err error) {
+
+	rawRec, err := NextRecord(reader)
+	if err != nil {
+		return Record{}, err
+	}
+
+	record, err = ParseRecord(rawRec)
+	if err != nil {
+		return Record{}, err
+	}
+
+	return record, nil
+}
+
+// RecordAsMARC converts a Record into a MARC record byte array
+func (rec Record) RecordAsMARC() (marc []byte, err error) {
+
+	if rec.Leader.String() == "" {
+		err = errors.New("record Leader is undefined")
+		return marc, err
+	}
+
+	var dir []DirectoryEntry
+	var rawDir []byte
+	var cfs []byte
+	var dfs []byte
+	var startPos int
+
+	// Pack the control fields
+	for _, cf := range rec.ControlFields {
+		if cf.String() == "" {
+			continue
+		}
+
+		b := []byte(cf.String())
+		b = append(b, END_OF_FIELD)
+		cfs = append(cfs, b...)
+
+		dir = append(dir, DirectoryEntry{Tag: cf.Tag, StartingPosition: startPos, FieldLength: len(b)})
+
+		startPos += len(b)
+	}
+
+	// Pack the data fields/sub-fields
+	for _, df := range rec.DataFields {
+
+		ind1 := df.GetIndicator1()
+		ind2 := df.GetIndicator2()
+
+		b := []byte(ind1)
+		b = append(b, []byte(ind2)...)
+
+		for _, sf := range df.SubFields {
+			b = append(b)
+			b = append(b, []byte(sf.GetCode())...)
+			b = append(b, []byte(sf.GetValue())...)
+		}
+		b = append(b, SUBFIELD_INDICATOR)
+
+		dfs = append(dfs, b...)
+
+		dir = append(dir, DirectoryEntry{Tag: df.Tag, StartingPosition: startPos, FieldLength: len(b)})
+
+		startPos += len(b)
+	}
+
+	// Generate the directory
+	for _, de := range dir {
+		rawDir = append(rawDir, []byte(de.Tag.GetTag())...)
+		rawDir = append(rawDir, []byte(fmt.Sprintf("%04d", de.FieldLength))...)
+		rawDir = append(rawDir, []byte(fmt.Sprintf("%05d", de.StartingPosition))...)
+	}
+	rawDir = append(rawDir, SUBFIELD_INDICATOR)
+
+	// Build the leader
+	recLen := []byte(fmt.Sprintf("%05d", 24+len(rawDir)+len(cfs)+len(dfs)+1))
+	recBaseDataAddress := []byte(fmt.Sprintf("%05d", 24+len(rawDir)))
+
+	ldr := []byte(rec.Leader.String())
+	for i := 0; i <= 4; i++ {
+		ldr[i] = recLen[i]
+		ldr[i+12] = recBaseDataAddress[i]
+	}
+
+	// Final assembly
+	marc = append(marc, ldr...)
+	marc = append(marc, rawDir...)
+	marc = append(marc, cfs...)
+	marc = append(marc, dfs...)
+	marc = append(marc, END_OF_RECORD)
+
+	return marc, nil
+}
