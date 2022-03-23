@@ -9,20 +9,19 @@ Another golang implementation of MARC 21.
 
 - parse marc21 files
 - convert marc21 into mrk format
-- convert marc21 into marc21 xml format
-- convert marc21 into marc21 json format
-- validate marc21 json against avarm marc21 schema
-- authority records
 - write MARCMaker files https://www.loc.gov/marc/makrbrkr.html
 - Read MARC21 and MARCXML data.
 
 ## A to-do list
-
- - authority records
- - more tests
- - Convert MARC-8 encoding to UTF-8
- - Perform error checking on MARC records
- - Read MARCMaker files https://www.loc.gov/marc/makrbrkr.html
+- Read MARCXML data.
+- convert marc21 into marc21 xml format
+- convert marc21 into marc21 json format
+- validate marc21 json against avarm marc21 schema
+- authority records 
+- more tests
+- Convert MARC-8 encoding to UTF-8
+- Perform error checking on MARC records
+- Read MARCMaker files https://www.loc.gov/marc/makrbrkr.html
 
 ## Revision History
 
