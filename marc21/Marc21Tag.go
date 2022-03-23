@@ -40,7 +40,7 @@ func NewTag(tagBytes []byte) (Tag, error) {
 	return Tag{'0', '0', '0'}, err
 }
 
-func (tag *Tag) GetTag() string {
+func (tag Tag) GetTag() string {
 	myTag := fmt.Sprintf("%c%c%c", tag.Tag1, tag.Tag2, tag.Tag3)
 	return myTag
 }
