@@ -40,6 +40,7 @@ const (
 	FormatUnknown         // unknown format
 )
 
+/*
 var marcFormatName = map[int]string{
 	Bibliography:   "Bibliography",
 	Holdings:       "Holdings",
@@ -48,7 +49,7 @@ var marcFormatName = map[int]string{
 	Community:      "Community Information",
 	FormatUnknown:  "Unknown",
 }
-
+*/
 // Leader pattern regex
 //<xsd:pattern value="[\d ]{5}[\dA-Za-z ]{1}[\dA-Za-z]{1}[\dA-Za-z ]{3}(2| )(2| )[\d ]{5}[\dA-Za-z ]{3}(4500| )"/>
 

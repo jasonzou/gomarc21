@@ -22,7 +22,7 @@ type SubField struct {
 
 // String returns the subfield as a string.
 func (sf SubField) String() string {
-	return fmt.Sprintf("$%c%s", sf.Code, sf.Value)
+	return fmt.Sprintf("$%s%s", sf.Code, sf.Value)
 }
 
 // GetCode returns the code for the subfield

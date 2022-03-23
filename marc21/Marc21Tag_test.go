@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestGetTag(test *testing.T) {
+func TestGetTag1(test *testing.T) {
 	var t Tag
 	t.Tag1 = '1'
 	t.Tag2 = '2'

@@ -40,7 +40,7 @@ func MakeDataField(tag string, data []byte) (DataField, error) {
 	if err == nil {
 		f.Tag = tempTag
 	} else {
-		return f, errors.New(fmt.Sprintf("invalid tag %s", tag))
+		return f, fmt.Errorf("invalid tag %s", tag)
 	}
 
 	// It's a control field
