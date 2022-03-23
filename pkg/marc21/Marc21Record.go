@@ -411,3 +411,22 @@ func (rec Record) RecordAsMARC() (marc []byte, err error) {
 
 	return marc, nil
 }
+
+// GetSubFields returns a slice of subfields that match the given tag
+// and code.
+//func (record *Record) GetSubFields(tag string, code byte) (subfields []*SubField) {
+/*
+	subfields = make([]*SubField, 0, 4)
+	fields := record.GetFields(tag)
+	for _, field := range fields {
+		switch data := field.(type) {
+		case *DataField:
+			for _, subfield := range data.SubFields {
+				if subfield.Code == code {
+					subfields = append(subfields, subfield)
+				}
+			}
+		}
+	}
+	return */
+//}
