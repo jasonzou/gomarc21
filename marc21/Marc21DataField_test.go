@@ -20,7 +20,7 @@ func TestString(test *testing.T) {
 }
 
 // Contains returns true if the field contains the passed string.
-func TestdfContains(test *testing.T) {
+func TestContains(test *testing.T) {
 }
 
 // GetInd1 returns the indicator 1 value for the datafield
@@ -33,5 +33,5 @@ func TestGetIndicator2(test *testing.T) {
 
 }
 
-func TestformatIndicator(test *testing.T) {
+func TestFormatIndicator(test *testing.T) {
 }
