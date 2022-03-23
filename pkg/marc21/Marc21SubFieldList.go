@@ -4,19 +4,6 @@ import (
 	"fmt"
 )
 
-// SubField contains a Code and a Value.
-// For example in:
-//		=650  \0$aDiabetes$xComplications$zUnited States.
-// an example of SubFieldValue will be:
-// 		SubField{
-//			Code: "a",
-//			Value: "Diabetes"
-//		}
-type SubField struct {
-	Code  string
-	Value string
-}
-
 // SubField Code regex
 //<xsd:pattern value="[\dA-Za-z!"#$%&'()*+,-./:;<=>?{}_^`~\[\]\\]{1}"/>
 

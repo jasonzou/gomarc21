@@ -7,32 +7,6 @@ import (
 	"strings"
 )
 
-// Field represents a field inside a MARC record. Notice that the
-// field could be a "control" field (tag 001-009) or a "data" field
-// (any other tag)
-//
-// For example in:
-//		=650  \0$aDiabetes$xComplications$zUnited States.
-// Field would be:
-// 		Field{
-//			Tag: "650",
-//			Value: ""
-//			Indicator1: " ",
-//			Indicator2: "0",
-//			SubFields (see SubField definition above)
-//	}
-
-// Indicator regex
-// <xsd:pattern value="[\da-z ]{1}"/>
-
-// Field defines an interface that is satisfied by the Control and Data field
-// types.
-type Field interface {
-	String() string
-	GetTag() string
-	Contains(string) bool
-}
-
 // MakeField creates a field objet with the data received.
 func MakeDataField(tag string, data []byte) (DataField, error) {
 	f := DataField{}

@@ -31,12 +31,6 @@ http://www.loc.gov/marc/bibliographic/bdintro.html
  http://www.loc.gov/marc/community/ci00x.html
 */
 
-// Controlfield contains a controlfield entry
-type ControlField struct {
-	Tag  Tag    `xml:"tag,attr"`
-	Data string `xml:",chardata"`
-}
-
 // Implement the Stringer interface for "Pretty-printing"
 func (cf ControlField) String() string {
 	return fmt.Sprintf("=%s  %s", cf.Tag.GetTag(), cf.Data)

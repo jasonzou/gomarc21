@@ -10,14 +10,6 @@ import (
 	"strings"
 )
 
-type Record struct {
-	Raw           []byte
-	Leader        Leader
-	Entries       []DirectoryEntry
-	ControlFields []ControlField
-	DataFields    []DataField
-}
-
 func (rec Record) GetRaw() string {
 	return string(rec.Raw)
 }

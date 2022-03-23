@@ -5,12 +5,6 @@ import (
 	"fmt"
 )
 
-type Tag struct {
-	Tag1 byte // for both Control and Data fields
-	Tag2 byte // for Data fields
-	Tag3 byte // for Data fields
-}
-
 func NewTagByStr(tagStr string) (Tag, error) {
 	tagBytes := []byte(tagStr)
 	tag, err := NewTag(tagBytes)

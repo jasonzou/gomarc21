@@ -79,14 +79,6 @@ Also:
 
 */
 
-// Datafield contains a datafield entry
-type DataField struct {
-	Tag        Tag        `xml:"tag,attr"`
-	Indicator1 string     `xml:"ind1,attr"`
-	Indicator2 string     `xml:"ind2,attr"`
-	SubFields  []SubField `xml:"subfield"`
-}
-
 // GetTag returns the tag for the datafield
 func (df DataField) GetTag() Tag {
 	return df.Tag
