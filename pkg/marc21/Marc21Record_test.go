@@ -2,6 +2,7 @@ package gomarc21
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"testing"
@@ -13,6 +14,59 @@ func openTestMARC(t *testing.T) (data *os.File) {
 		t.Fatal(err)
 	}
 	return
+}
+
+func TestAllRecordsInFile(test *testing.T) {
+	data, err := os.Open("data/test_10.mrc")
+	if err != nil {
+		test.Fatal(err)
+	}
+	defer data.Close()
+
+	var rec Record
+	var i int = 0
+	for {
+
+		rec, err = ParseNextRecord(data)
+		if err == io.EOF {
+			break
+		}
+		i++
+		if err != nil {
+			fmt.Println(err)
+			test.Error("failed to read a marc record")
+		}
+		fmt.Print(rec.Leader.RecordLength)
+	}
+
+	test.Error(i, " records")
+}
+
+func TestMultipleRecords(test *testing.T) {
+	data, err := os.Open("data/test_10.mrc")
+	if err != nil {
+		test.Fatal(err)
+	}
+	defer data.Close()
+
+	rec, err := ReadRecord(data)
+	if err != nil {
+		fmt.Println(err)
+		test.Error("failed to read a marc record")
+	}
+	if rec.Leader.BaseAddressOfData != 385 {
+		test.Error("the base address of data is 332, but is ", rec.Leader.BaseAddressOfData)
+	}
+
+	rec, err = ParseNextRecord(data)
+	if err != nil {
+		fmt.Println(err)
+		test.Error("failed to read a marc record")
+	}
+	if rec.Leader.BaseAddressOfData != 469 {
+		test.Error("the base address of data is 332, but is ", rec.Leader.BaseAddressOfData)
+	}
+
 }
 
 func TestGetRaw1(test *testing.T) {
@@ -95,6 +149,7 @@ func TestGetMrk(test *testing.T) {
 		test.Error("not complete match")
 	}
 }
+
 func TestParseRecord(test *testing.T) {
 	const exp = `=LDR  00350cz  a2200157n  4500
 	=001  cash10000\
@@ -134,10 +189,8 @@ func TestRecordAsMARC(test *testing.T) {
 
 }
 
-/*
-// TestReadEmpty tests readings a record without fields.
 func TestReadEmpty(t *testing.T) {
-	file, err := os.Open("fixtures/r0.mrc")
+	file, err := os.Open("data/empty.mrc")
 	if err != nil {
 		t.Error(err)
 	}
@@ -145,14 +198,20 @@ func TestReadEmpty(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	if len(record.Fields) != 0 {
-		t.Errorf("record.Fields, got %v, want %v", len(record.Fields), 0)
+	if len(record.ControlFields) != 0 {
+		t.Errorf("record.ControlFields, got %v, want %v", len(record.ControlFields), 0)
 	}
-	if record.Leader.Length != 26 {
-		t.Errorf("record.Leader.Length, got %v, want %v", record.Leader.Length, 0)
+	log.Print(len(record.ControlFields))
+	if len(record.DataFields) != 0 {
+		t.Errorf("record.DataFields, got %v, want %v", len(record.DataFields), 0)
+	}
+	log.Print(len(record.DataFields))
+	if record.Leader.RecordLength != 26 {
+		t.Errorf("record.Leader.Length, got %v, want %v", record.Leader.RecordLength, 0)
 	}
 }
 
+/*
 func TestWhitespaceIdentifier(t *testing.T) {
 	file, err := os.Open("fixtures/r1.mrc")
 	if err != nil {
