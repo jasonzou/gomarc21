@@ -88,7 +88,7 @@ func (df DataField) GetTag() Tag {
 func (df DataField) String() string {
 	str := fmt.Sprintf("=%s  %s%s", df.Tag.GetTag(), formatIndicator(df.Indicator1), formatIndicator(df.Indicator2))
 	for _, sub := range df.SubFields {
-		str += fmt.Sprintf("$%s%s", sub.Code, sub.Value)
+		str += fmt.Sprintf("$%s%s", sub.Code, sub.Data)
 	}
 	return str
 }
@@ -98,7 +98,7 @@ func (df DataField) Contains(str string) bool {
 	str = strings.ToLower(str)
 
 	for _, sub := range df.SubFields {
-		if strings.Contains(strings.ToLower(sub.Value), str) {
+		if strings.Contains(strings.ToLower(sub.Data), str) {
 			return true
 		}
 	}

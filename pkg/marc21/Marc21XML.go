@@ -2,9 +2,24 @@ package gomarc21
 
 import (
 	"encoding/xml"
+	"fmt"
 )
 
+func (record Record) RecordAsXML() (string, error) {
+	x := XmlRecord{
+		Leader:        string(record.Leader.raw),
+		ControlFields: record.ControlFields,
+		DataFields:    record.DataFields,
+	}
+
+	b, err := xml.MarshalIndent(x, "", "")
+	fmt.Print(string(b))
+
+	return string(b), err
+}
+
 // A MARC Record Set is for containing zero or more MARC records
+/*
 type Collection struct {
 	Name    xml.Name  `xml:"collection"`
 	Records []*Record `xml:"record"`
@@ -36,7 +51,7 @@ type xmlRecord struct {
 const xmlProlog = `<?xml version="1.0" encoding="UTF-8"?>`
 const xmlRootBegin = `<collection xmlns="http://www.loc.gov/MARC21/slim" xmlns:marc="http://www.loc.gov/MARC21/slim">`
 const xmlRootEnd = `</collection>`
-
+*/
 /*
 func toXML(params ProcessFileParams) error {
 	if count == 0 {

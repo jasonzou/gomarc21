@@ -1,5 +1,9 @@
 package gomarc21
 
+import (
+	"encoding/xml"
+)
+
 const (
 	SPACE               = 0x20
 	END_OF_RECORD       = 0x1D
@@ -10,10 +14,46 @@ const (
 	MAX_RECORD_LEN      = 99999
 )
 
-type Tag struct {
-	Tag1 byte // for both Control and Data fields
-	Tag2 byte // for Data fields
-	Tag3 byte // for Data fields
+type Tag string
+
+// A MARC Record Set is for containing zero or more MARC records
+type Collection struct {
+	Name    xml.Name  `xml:"collection"`
+	Records []*Record `xml:"record"`
+}
+
+// Controlfield contains a controlfield entry
+type ControlField struct {
+	Tag  Tag    `xml:"tag,attr"`
+	Data string `xml:",chardata"`
+}
+
+// SubField contains a Code and a Value.
+// For example in:
+//		=650  \0$aDiabetes$xComplications$zUnited States.
+// an example of SubFieldValue will be:
+// 		SubField{
+//			Code: "a",
+//			Value: "Diabetes"
+//		}
+type SubField struct {
+	Code string `xml:"code,attr"`
+	Data string `xml:",chardata"`
+}
+
+// Datafield contains a datafield entry
+type DataField struct {
+	Tag        Tag        `xml:"tag,attr"`
+	Indicator1 string     `xml:"ind1,attr"`
+	Indicator2 string     `xml:"ind2,attr"`
+	SubFields  []SubField `xml:"subfield"`
+}
+
+type XmlRecord struct {
+	XMLName       xml.Name       `xml:"record"`
+	Leader        string         `xml:"leader"`
+	ControlFields []ControlField `xml:"controlfield"`
+	DataFields    []DataField    `xml:"datafield"`
 }
 
 // Field represents a field inside a MARC record. Notice that the
@@ -40,20 +80,6 @@ type Field interface {
 	String() string
 	GetTag() string
 	Contains(string) bool
-}
-
-// Controlfield contains a controlfield entry
-type ControlField struct {
-	Tag  Tag    `xml:"tag,attr"`
-	Data string `xml:",chardata"`
-}
-
-// Datafield contains a datafield entry
-type DataField struct {
-	Tag        Tag        `xml:"tag,attr"`
-	Indicator1 string     `xml:"ind1,attr"`
-	Indicator2 string     `xml:"ind2,attr"`
-	SubFields  []SubField `xml:"subfield"`
 }
 
 const (
@@ -110,8 +136,9 @@ type Leader struct {
 	LengthOfTheStartingCharPositionPortion  byte // 21 - 5
 	LengthOfTheImplementationDefinedPortion byte // 22 - 0
 	Undefined                               byte // 23 - 0
-} /* ----------------------------------------------------------------------
+}
 
+/*
 source: http://www.loc.gov/marc/bibliographic/bdintro.html
 
     Directory - A series of entries that contain the tag, length, and
@@ -162,19 +189,6 @@ type DirectoryEntry struct {
 	Tag              Tag
 	FieldLength      int
 	StartingPosition int
-}
-
-// SubField contains a Code and a Value.
-// For example in:
-//		=650  \0$aDiabetes$xComplications$zUnited States.
-// an example of SubFieldValue will be:
-// 		SubField{
-//			Code: "a",
-//			Value: "Diabetes"
-//		}
-type SubField struct {
-	Code  string
-	Value string
 }
 
 type Record struct {

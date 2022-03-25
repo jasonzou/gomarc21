@@ -48,8 +48,8 @@ func (df DataField) GetSubFields(filter string) []SubField {
 	for _, sub := range df.SubFields {
 		if strings.Contains(filter, sub.Code) {
 			value := SubField{
-				Code:  sub.Code,
-				Value: sub.Value,
+				Code: sub.Code,
+				Data: sub.Data,
 			}
 			values = append(values, value)
 		}

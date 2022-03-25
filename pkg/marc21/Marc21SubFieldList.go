@@ -9,7 +9,7 @@ import (
 
 // String returns the subfield as a string.
 func (sf SubField) String() string {
-	return fmt.Sprintf("$%s%s", sf.Code, sf.Value)
+	return fmt.Sprintf("$%s%s", sf.Code, sf.Data)
 }
 
 // GetCode returns the code for the subfield
@@ -19,7 +19,7 @@ func (sf SubField) GetCode() string {
 
 // GetText returns the text for the subfield
 func (sf SubField) GetValue() string {
-	return sf.Value
+	return sf.Data
 }
 
 func (sf SubField) AddSubField(Code string, Value string) {

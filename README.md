@@ -25,7 +25,9 @@ Another golang implementation of MARC 21.
 
 ## Revision History
 
-- March 23, 2022 version 0.0.3, add files into cmd folder
-Marc21Record.go is working...
+- March 25, 2022 version 0.0.6, recordAsXml is working; reflect Tag
+- March 24, 2022 version 0.0.5, more tests
+- March 23, 2022 version 0.0.4, Marc21Record_test.go is working;worked on json
+- March 23, 2022 version 0.0.3, add files into cmd folder Marc21Record.go is working...
 - March 23, 2022 version 0.0.2, Marc21Record.go is working...
 - March 21, 2022 Initial version (0.0.1) created based marcnet, other marc21 golang implementations

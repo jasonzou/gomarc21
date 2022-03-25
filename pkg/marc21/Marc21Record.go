@@ -136,7 +136,7 @@ func ParseDataFields(rawRec []byte, baseAddress int, dir []DirectoryEntry) (dfs 
 
 			for _, t := range bytes.Split(b[2:d.FieldLength-1], []byte{SUBFIELD_INDICATOR}) {
 				if len(t) > 0 {
-					df.SubFields = append(df.SubFields, SubField{Code: string(t[0]), Value: string(t[1:])})
+					df.SubFields = append(df.SubFields, SubField{Code: string(t[0]), Data: string(t[1:])})
 				}
 			}
 			dfs = append(dfs, df)
@@ -402,6 +402,19 @@ func (rec Record) RecordAsMARC() (marc []byte, err error) {
 	marc = append(marc, END_OF_RECORD)
 
 	return marc, nil
+}
+
+// TODO: Add support for JSONL (JSON line delimited) format that makes JSON
+// easier to parse with Unix tools like grep, tail, and so on.
+func (record Record) RecordAsJson() (jsonstr string, err error) {
+	jsonstr = record.Leader.String()
+	for _, cf := range record.ControlFields {
+		jsonstr += cf.String()
+	}
+	for _, df := range record.DataFields {
+		jsonstr = jsonstr + df.String()
+	}
+	return jsonstr, nil
 }
 
 // GetSubFields returns a slice of subfields that match the given tag

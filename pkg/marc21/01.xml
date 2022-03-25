@@ -1,0 +1,321 @@
+<record>
+  <leader>01805nam a2200385 i 4500</leader>
+  <controlfield tag="001">
+    <controlfield></controlfield>ocm57175940</controlfield>
+  <controlfield tag="005">
+    <controlfield></controlfield>20041206161421.0</controlfield>
+  <controlfield tag="006">
+    <controlfield></controlfield>m        d f      </controlfield>
+  <controlfield tag="007">
+    <controlfield></controlfield>cr cn-</controlfield>
+  <controlfield tag="008">
+    <controlfield></controlfield>041206s1976    dcua    sb   f000 0 eng c</controlfield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">GPO</subfield>
+    <subfield code="c">GPO</subfield>
+    <subfield code="d">MvI</subfield>
+    <subfield code="d">MvI</subfield>
+  </datafield>
+  <datafield tag="042" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">pcc</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">n-us---</subfield>
+  </datafield>
+  <datafield tag="074" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">0620-A (online)</subfield>
+  </datafield>
+  <
+datafield tag="086" ind1="0" ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">I 19.4/2:735</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">Swanson, Vernon E.</subfield>
+    <subfield code="q">(Vernon Emmanuel),</subfield>
+    <subfield code="d">1922-1992.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <datafield></datafield>
+    <subfield code="a">Guidelines for sample collecting and analytical methods used in the U.S. Geological Survey for determining chemical composition of coal</subfield>
+    <subfield code="h">[electronic resource] /</subfield>
+    <subfield code="c">by Vernon E. Swanson and Claude Huffman, Jr.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">[Washington, D.C.] :</subfield>
+    <subfield code="b">U.S. Dept. of the Interior, U.S. Geological Survey,</subfield>
+    <subfield code="c">1976.</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">text</subfie
+ld>
+    <subfield code="2">rdacontent.</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">computer</subfield>
+    <subfield code="2">rdamedia.</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">online resource</subfield>
+    <subfield code="2">rdacarrier.</subfield>
+  </datafield>
+  <datafield tag="440" ind1=" " ind2="0">
+    <datafield></datafield>
+    <subfield code="a">Geological Survey circular ;</subfield>
+    <subfield code="v">735.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">Title from title screen (viewed on Dec. 06, 2004)</subfield>
+  </datafield>
+  <datafield tag="504" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">Includes bibliographical references.</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">Mode of access: Internet from the USGS Web site. Address as of 12/06/04: http://pubs.usgs.gov/circ/c735/index.htm; cu
+rrent access is available via PURL.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <datafield></datafield>
+    <subfield code="a">Coal</subfield>
+    <subfield code="x">Analysis.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <datafield></datafield>
+    <subfield code="a">Coal</subfield>
+    <subfield code="x">Sampling.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">Huffman, Claude.</subfield>
+  </datafield>
+  <datafield tag="776" ind1="1" ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">Swanson, Vernon Emanuel,</subfield>
+    <subfield code="d">1922-</subfield>
+    <subfield code="t">Guidelines for sample collecting and analytical methods used in the U.S. Geological Survey for determining chemical composition of coal</subfield>
+    <subfield code="h">iv, 11 p.</subfield>
+    <subfield code="w">(OCoLC)2331861.</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="0">
+    <datafield></datafield>
+    <subfield code="u">http://purl.access.gpo.gov/GPO/LPS56007</subfield>
+    <subfield code="z">View online version</subfield>
+  </datafield>
+  <datafield tag="907" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">.b37991760</subfield>
+    <subfield code="b">04-08-17</subfield>
+    <subfield code="c">07-26-05</subfield>
+  </datafield>
+  <datafield tag="998" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">es001</subfield>
+    <subfield code="b">07-26-05</subfield>
+    <subfield code="c">m</subfield>
+    <subfield code="d">a</subfield>
+    <subfield code="e">-</subfield>
+    <subfield code="f">eng</subfield>
+    <subfield code="g">dcu</subfield>
+    <subfield code="h">0</subfield>
+    <subfield code="i">1</subfield>
+  </datafield>
+  <datafield tag="910" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">MARCIVE</subfield>
+  </datafield>
+  <datafield tag="910" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="a">Hathi Trust report None</subfield>
+  </datafield>
+  <datafield tag="945" ind1=" " ind2=" ">
+    <datafield></datafield>
+    <subfield code="g">0</subfield>
+    <subfield code="j">0</subfield>
+    <subfield code="l">esb  </subfield>
+    <subfield code="o
+">n</subfield>
+    <subfield code="p">$0.00</subfield>
+    <subfield code="q"></subfield>
+    <subfield code="r"></subfield>
+    <subfield code="s">-</subfield>
+    <subfield code="t">255</subfield>
+    <subfield code="u">0</subfield>
+    <subfield code="v">0</subfield>
+    <subfield code="w">0</subfield>
+    <subfield code="x">0</subfield>
+    <subfield code="y">.i138993579</subfield>
+    <subfield code="z">07-26-05</subfield>
+  </datafield>
+</record>    /run/media/jason/E36E-DFBD/gomarc21/gomarc21/pkg/marc21/Marc21XML_test.go:18: <record>
+<leader>01805nam a2200385 i 4500</leader>
+<controlfield tag="001">
+  <controlfield></controlfield>ocm57175940</controlfield>
+<controlfield tag="005">
+  <controlfield></controlfield>20041206161421.0</controlfield>
+<controlfield tag="006">
+  <controlfield></controlfield>m        d f      </controlfield>
+<controlfield tag="007">
+  <controlfield></controlfield>cr cn-</controlfield>
+<controlfield tag="008">
+  <controlfield></controlfield>041206s1976    dcua    sb   f000 0 eng c</controlfield>
+<datafield tag="040" ind1=" " ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">GPO</subfield>
+  <subfield code="c">GPO</
+subfield>
+  <subfield code="d">MvI</subfield>
+  <subfield code="d">MvI</subfield>
+</datafield>
+<datafield tag="042" ind1=" " ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">pcc</subfield>
+</datafield>
+<datafield tag="043" ind1=" " ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">n-us---</subfield>
+</datafield>
+<datafield tag="074" ind1=" " ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">0620-A (online)</subfield>
+</datafield>
+<datafield tag="086" ind1="0" ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">I 19.4/2:735</subfield>
+</datafield>
+<datafield tag="100" ind1="1" ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">Swanson, Vernon E.</subfield>
+  <subfield code="q">(Vernon Emmanuel),</subfield>
+  <subfield code="d">1922-1992.</subfield>
+</datafield>
+<datafield tag="245" ind1="1" ind2="0">
+  <datafield></datafield>
+  <subfield code="a">Guidelines for sample collecting and analytical methods used in the U.S. Geological Survey for determining chemical composition of coal</subfield>
+  <subfield code="h">[electronic resource] /</sub
+field>
+  <subfield code="c">by Vernon E. Swanson and Claude Huffman, Jr.</subfield>
+</datafield>
+<datafield tag="260" ind1=" " ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">[Washington, D.C.] :</subfield>
+  <subfield code="b">U.S. Dept. of the Interior, U.S. Geological Survey,</subfield>
+  <subfield code="c">1976.</subfield>
+</datafield>
+<datafield tag="336" ind1=" " ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">text</subfield>
+  <subfield code="2">rdacontent.</subfield>
+</datafield>
+<datafield tag="337" ind1=" " ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">computer</subfield>
+  <subfield code="2">rdamedia.</subfield>
+</datafield>
+<datafield tag="338" ind1=" " ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">online resource</subfield>
+  <subfield code="2">rdacarrier.</subfield>
+</datafield>
+<datafield tag="440" ind1=" " ind2="0">
+  <datafield></datafield>
+  <subfield code="a">Geological Survey circular ;</subfield>
+  <subfield code="v">735.</subfield>
+</datafield>
+<datafield tag="500" ind1=" " ind2=" ">
+  <datafield></datafield>
+  <sub
+field code="a">Title from title screen (viewed on Dec. 06, 2004)</subfield>
+</datafield>
+<datafield tag="504" ind1=" " ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">Includes bibliographical references.</subfield>
+</datafield>
+<datafield tag="538" ind1=" " ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">Mode of access: Internet from the USGS Web site. Address as of 12/06/04: http://pubs.usgs.gov/circ/c735/index.htm; current access is available via PURL.</subfield>
+</datafield>
+<datafield tag="650" ind1=" " ind2="0">
+  <datafield></datafield>
+  <subfield code="a">Coal</subfield>
+  <subfield code="x">Analysis.</subfield>
+</datafield>
+<datafield tag="650" ind1=" " ind2="0">
+  <datafield></datafield>
+  <subfield code="a">Coal</subfield>
+  <subfield code="x">Sampling.</subfield>
+</datafield>
+<datafield tag="700" ind1="1" ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">Huffman, Claude.</subfield>
+</datafield>
+<datafield tag="776" ind1="1" ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">Swanson, Vernon Emanuel,</subfield>
+  <subfield c ode="d">1922-</subfield>
+  <subfield code="t">Guidelines for sample collecting and analytical methods used in the U.S. Geological Survey for determining chemical composition of coal</subfield>
+  <subfield code="h">iv, 11 p.</subfield>
+  <subfield code="w">(OCoLC)2331861.</subfield>
+</datafield>
+<datafield tag="856" ind1="4" ind2="0">
+  <datafield></datafield>
+  <subfield code="u">http://purl.access.gpo.gov/GPO/LPS56007</subfield>
+  <subfield code="z">View online version</subfield>
+</datafield>
+<datafield tag="907" ind1=" " ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">.b37991760</subfield>
+  <subfield code="b">04-08-17</subfield>
+  <subfield code="c">07-26-05</subfield>
+</datafield>
+<datafield tag="998" ind1=" " ind2=" ">
+  <datafield></datafield>
+  <subfield code="a">es001</subfield>
+  <subfield code="b">07-26-05</subfield>
+  <subfield code="c">m</subfield>
+  <subfield code="d">a</subfield>
+  <subfield code="e">-</subfield>
+  <subfield code="f">eng</subfield>
+  <subfield code="g">dcu</subfield>
+  <subfield code="h">0</subfield>
+  <subfield code="i">1</subfield>
+  <
+/datafield>
+    <datafield tag="910" ind1=" " ind2=" ">
+      <datafield></datafield>
+      <subfield code="a">MARCIVE</subfield>
+    </datafield>
+    <datafield tag="910" ind1=" " ind2=" ">
+      <datafield></datafield>
+      <subfield code="a">Hathi Trust report None</subfield>
+    </datafield>
+    <datafield tag="945" ind1=" " ind2=" ">
+      <datafield></datafield>
+      <subfield code="g">0</subfield>
+      <subfield code="j">0</subfield>
+      <subfield code="l">esb  </subfield>
+      <subfield code="o">n</subfield>
+      <subfield code="p">$0.00</subfield>
+      <subfield code="q"></subfield>
+      <subfield code="r"></subfield>
+      <subfield code="s">-</subfield>
+      <subfield code="t">255</subfield>
+      <subfield code="u">0</subfield>
+      <subfield code="v">0</subfield>
+      <subfield code="w">0</subfield>
+      <subfield code="x">0</subfield>
+      <subfield code="y">.i138993579</subfield>
+      <subfield code="z">07-26-05</subfield>
+    </datafield>
+  </record>

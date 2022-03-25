@@ -39,7 +39,27 @@ func TestAllRecordsInFile(test *testing.T) {
 		fmt.Print(rec.Leader.RecordLength)
 	}
 
-	test.Error(i, " records")
+	test.Log(i, " records")
+	//	var Mish int = 5
+	//var Mash int = 7
+	//assert.NotEqual(test, Mish, Mash, "Outputs should not be the same")
+
+}
+func TestRecordAsJson(test *testing.T) {
+	data, err := os.Open("data/test_1a.mrc")
+	if err != nil {
+		test.Fatal(err)
+	}
+	defer data.Close()
+
+	var rec Record
+	rec, err = ParseNextRecord(data)
+
+	jsonstr, err := rec.RecordAsJson()
+	if jsonstr != "  " {
+		test.Error(jsonstr)
+	}
+
 }
 
 func TestMultipleRecords(test *testing.T) {
