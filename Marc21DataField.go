@@ -127,3 +127,17 @@ func formatIndicator(value string) string {
 	}
 	return value
 }
+
+//
+//
+func (df DataField) AsJson() string {
+	var sfStr string
+	sfStr = "\"subfields\": ["
+	for _, sf := range df.SubFields {
+		sfStr += sf.AsJson() + ","
+	}
+	sfStr = sfStr[:len(sfStr)-1]
+	sfStr += "]"
+	jsonStr := fmt.Sprintf("{ \"%s\": { \"ind1\": \"%s\", \"ind2\": \"%s\", %s }  }", df.Tag, df.Indicator1, df.Indicator2, sfStr)
+	return jsonStr
+}

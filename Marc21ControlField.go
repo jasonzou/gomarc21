@@ -57,3 +57,10 @@ func (cf ControlField) Contains(str string) bool {
 func (cf ControlField) GetData() string {
 	return cf.Data
 }
+
+//
+//
+func (cf ControlField) AsJson() string {
+	jsonStr := fmt.Sprintf("{ \"%s\": \"%s\" }", cf.Tag, cf.Data)
+	return jsonStr
+}

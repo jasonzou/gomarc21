@@ -56,6 +56,12 @@ type XmlRecord struct {
 	DataFields    []DataField    `xml:"datafield"`
 }
 
+type JsonRecord struct {
+	Leader        string         `json:"leader"`
+	ControlFields []ControlField `json:"controlfield"`
+	DataFields    []DataField    `json:"datafield"`
+}
+
 // Field represents a field inside a MARC record. Notice that the
 // field could be a "control" field (tag 001-009) or a "data" field
 // (any other tag)
@@ -80,6 +86,7 @@ type Field interface {
 	String() string
 	GetTag() string
 	Contains(string) bool
+	AsJson() string
 }
 
 const (
@@ -119,23 +126,23 @@ var marcFormatName = map[int]string{
 //=667  \\$aCSH3.
 //=751  \6$aBaffin, Baie de
 type Leader struct {
-	raw                                     []byte
-	RecordLength                            int  // 00 - 04 [\d ]{5}
-	RecordStatus                            byte // 05 byte position [\dA-Za-z ]
-	TypeOfRecord                            byte // 06 [\dA-Za-z]
-	BibLevel                                byte // 07
-	TypeOfControl                           byte // 08
-	CharCodingScheme                        byte // 09
-	IndicatorCount                          byte // 10 - 2
-	SubfieldCodeCount                       byte // 11 - 2
-	BaseAddressOfData                       int  // 12-16
-	EncodingLevel                           byte // 17
-	DescrCatForm                            byte // 18
-	MultipartLevel                          byte // 19
-	LengthOfFieldPortion                    byte // 20 - 4
-	LengthOfTheStartingCharPositionPortion  byte // 21 - 5
-	LengthOfTheImplementationDefinedPortion byte // 22 - 0
-	Undefined                               byte // 23 - 0
+	raw                                     []byte `json:"leader"`
+	RecordLength                            int    `json:"-"` // 00 - 04 [\d ]{5} `json:"name"`
+	RecordStatus                            byte   // 05 byte position [\dA-Za-z ]
+	TypeOfRecord                            byte   // 06 [\dA-Za-z]
+	BibLevel                                byte   // 07
+	TypeOfControl                           byte   // 08
+	CharCodingScheme                        byte   // 09
+	IndicatorCount                          byte   // 10 - 2
+	SubfieldCodeCount                       byte   // 11 - 2
+	BaseAddressOfData                       int    // 12-16
+	EncodingLevel                           byte   // 17
+	DescrCatForm                            byte   // 18
+	MultipartLevel                          byte   // 19
+	LengthOfFieldPortion                    byte   // 20 - 4
+	LengthOfTheStartingCharPositionPortion  byte   // 21 - 5
+	LengthOfTheImplementationDefinedPortion byte   // 22 - 0
+	Undefined                               byte   // 23 - 0
 }
 
 /*
@@ -185,14 +192,14 @@ source: http://www.loc.gov/marc/bibliographic/bddirectory.html
         justified and unused positions contain zeros.
 -------------------------------------------------------------------------*/
 type DirectoryEntry struct {
-	Raw              []byte
+	raw              []byte
 	Tag              Tag
 	FieldLength      int
 	StartingPosition int
 }
 
 type Record struct {
-	Raw           []byte
+	raw           []byte
 	Leader        Leader
 	Entries       []DirectoryEntry
 	ControlFields []ControlField

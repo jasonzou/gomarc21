@@ -22,6 +22,10 @@ func (sf SubField) GetValue() string {
 	return sf.Data
 }
 
+// GetText returns the text for the subfield
+func (sf SubField) AsJson() string {
+	return fmt.Sprintf("{ \"%s\": \"%s\"}", sf.Code, sf.Data)
+}
 func (sf SubField) AddSubField(Code string, Value string) {
 }
 

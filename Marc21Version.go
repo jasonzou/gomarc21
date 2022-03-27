@@ -3,7 +3,7 @@ package gomarc21
 import "fmt"
 
 // Version is current version of this library.
-var Version = version{0, 0, 6}
+var Version = version{0, 0, 7}
 
 // v holds the version of this library.
 type version struct {

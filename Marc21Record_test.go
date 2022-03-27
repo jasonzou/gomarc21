@@ -45,22 +45,6 @@ func TestAllRecordsInFile(test *testing.T) {
 	//assert.NotEqual(test, Mish, Mash, "Outputs should not be the same")
 
 }
-func TestRecordAsJson(test *testing.T) {
-	data, err := os.Open("data/test_1a.mrc")
-	if err != nil {
-		test.Fatal(err)
-	}
-	defer data.Close()
-
-	var rec Record
-	rec, err = ParseNextRecord(data)
-
-	jsonstr, err := rec.RecordAsJson()
-	if jsonstr != "  " {
-		test.Error(jsonstr)
-	}
-
-}
 
 func TestMultipleRecords(test *testing.T) {
 	data, err := os.Open("data/test_10.mrc")
@@ -183,6 +167,7 @@ func TestParseRecord(test *testing.T) {
 	=151  \\$aBaffin Bay
 	=667  \\$aCSH3.
 	=751  \6$aBaffin, Baie de`
+	fmt.Print(exp)
 	data := openTestMARC(test)
 	defer data.Close()
 

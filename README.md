@@ -13,18 +13,20 @@ Another golang implementation of MARC 21.
 - Read MARC21 and MARCXML data.
 
 ## A to-do list
+
 - Read MARCXML data.
 - convert marc21 into marc21 xml format
 - convert marc21 into marc21 json format
 - validate marc21 json against avarm marc21 schema
-- authority records 
+- authority records
 - more tests
 - Convert MARC-8 encoding to UTF-8
 - Perform error checking on MARC records
-- Read MARCMaker files https://www.loc.gov/marc/makrbrkr.html
+- Read [MARCMaker files](https://www.loc.gov/marc/makrbrkr.html)
 
 ## Revision History
 
+- March 27, 2022 version 0.0.7, recordAsJson is working. This approach may need to be revisited later.
 - March 25, 2022 version 0.0.6, recordAsXml is working; reflect Tag
 - March 24, 2022 version 0.0.5, more tests
 - March 23, 2022 version 0.0.4, Marc21Record_test.go is working;worked on json

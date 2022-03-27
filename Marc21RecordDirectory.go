@@ -8,7 +8,7 @@ import (
 
 func (dirEntry DirectoryEntry) GetRaw() string {
 	// need to make sure 12 bytes
-	return string(dirEntry.Raw)
+	return string(dirEntry.raw)
 }
 func (dirEntry DirectoryEntry) GetFieldLength() int {
 	return dirEntry.FieldLength
@@ -42,7 +42,7 @@ func NewDirectoryEntry(entryBytes []byte) (DirectoryEntry, error) {
 	}
 
 	directoryEntry := DirectoryEntry{
-		Raw:              entryBytes[:12],
+		raw:              entryBytes[:12],
 		Tag:              tag,
 		FieldLength:      fieldLength,
 		StartingPosition: startingPosition,

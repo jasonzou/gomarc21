@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestRecordAsXML(test *testing.T) {
+func TestRecordAsJson(test *testing.T) {
 	data, err := os.Open("data/test_1a.mrc")
 	if err != nil {
 		test.Fatal(err)
@@ -18,6 +18,6 @@ func TestRecordAsXML(test *testing.T) {
 		test.Error(err)
 	}
 	if rec.Leader.RecordLength != 0 {
-		test.Error(rec.RecordAsXML())
+		test.Error(rec.RecordAsJson())
 	}
 }
