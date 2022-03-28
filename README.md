@@ -7,22 +7,21 @@ Another golang implementation of MARC 21.
 
 ## Functionality
 
+- read MARC21 data.
 - parse marc21 files
-- convert marc21 into mrk format
-- write MARCMaker files https://www.loc.gov/marc/makrbrkr.html
-- Read MARC21 and MARCXML data.
+- convert marc21 into marc21 xml format
+- convert marc21 into marc21 json format
+- convert marc21 into [mrk format](https://www.loc.gov/marc/makrbrkr.html)
 
 ## A to-do list
 
-- Read MARCXML data.
-- convert marc21 into marc21 xml format
-- convert marc21 into marc21 json format
+- read/parse MARCXML data.
 - validate marc21 json against avarm marc21 schema
 - authority records
 - more tests
-- Convert MARC-8 encoding to UTF-8
 - Perform error checking on MARC records
 - Read [MARCMaker files](https://www.loc.gov/marc/makrbrkr.html)
+- Convert MARC-8 encoding to UTF-8
 
 ## Revision History
 - version 0.0.8, cmd files using kong instead of flag. March 28, 2022
