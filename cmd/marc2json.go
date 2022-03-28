@@ -6,20 +6,30 @@ import (
 	"log"
 	"os"
 
+	"github.com/alecthomas/kong"
 	"github.com/jasonzou/gomarc21"
 )
 
+var CLI struct {
+	InputFile  string `short:"i" name:"input" help:"The file contains MARC records." type:"existingfile"`
+	OutputFile string `short:"o" name:"output" help:"The file will contain Json records converted from the input MARC records." type:"file"`
+}
+
 func main() {
+	ctx := kong.Parse(&CLI,
+		kong.Name("marc2json"),
+		kong.Description("Convert MARC records into Json records."),
+		kong.UsageOnError(),
+		kong.ConfigureHelp(kong.HelpOptions{
+			Compact: true,
+			Summary: true,
+		}))
+	fmt.Print(ctx.Command())
+	fmt.Print(CLI.InputFile)
+	fmt.Print(CLI.OutputFile)
 
-	var marcfile string
-	if len(os.Args) > 1 {
-		marcfile = os.Args[1]
-	}
-
-	if marcfile == "" {
-		showHelp()
-	}
-
+	var marcfile = CLI.InputFile
+	//var output = CLI.OutputFile
 	data, err := os.Open(marcfile)
 	if err != nil {
 		data.Close()
@@ -44,12 +54,4 @@ func main() {
 
 		fmt.Print(recxml)
 	}
-}
-
-func showHelp() {
-	fmt.Println(os.Args[0])
-	fmt.Println("   Converts a MARC file to MARCXML.")
-	fmt.Printf("    Usage: %s <MARC file to convert>\n", os.Args[0])
-	fmt.Println()
-	os.Exit(0)
 }

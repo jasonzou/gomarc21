@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io"
 	"log"
@@ -11,14 +12,14 @@ import (
 
 func main() {
 
+	var recsPerFile int
 	var marcfile string
-	if len(os.Args) > 1 {
-		marcfile = os.Args[1]
-	}
+	var dir string
 
-	if marcfile == "" {
-		showHelp()
-	}
+	flag.IntVar(&recsPerFile, "c", 1000, "The number of MARC records per output file (defaults to 1000).")
+	flag.StringVar(&marcfile, "m", "", "The file that contains the MARC records.")
+	flag.StringVar(&dir, "d", "mark_split", "The directory to write the output files to (defaults to mark_split).")
+	flag.Parse()
 
 	fi, err := os.Open(marcfile)
 	if err != nil {
@@ -30,10 +31,8 @@ func main() {
 		}
 	}()
 
-	fmt.Print(marc21.CollectionXMLHeader)
-
 	for {
-		rec, err := marc21.ParseNextRecord(fi)
+		rec, err := gomarc21.ParseNextRecord(fi)
 		if err == io.EOF {
 			break
 		}
@@ -49,13 +48,4 @@ func main() {
 		fmt.Print(recxml)
 	}
 
-	fmt.Print(marc21.CollectionXMLFooter)
-}
-
-func showHelp() {
-	fmt.Println(os.Args[0])
-	fmt.Println("   Converts a MARC file to MARCXML.")
-	fmt.Printf("    Usage: %s <MARC file to convert>\n", os.Args[0])
-	fmt.Println()
-	os.Exit(0)
 }

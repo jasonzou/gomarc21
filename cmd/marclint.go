@@ -6,19 +6,29 @@ import (
 	"log"
 	"os"
 
-	"github.com/jasonzou/gomarc21"
+	"github.com/alecthomas/kong"
 )
 
+var CLI struct {
+	InputFile  string `short:"i" name:"input" help:"The file contains MARC records." type:"existingfile"`
+	OutputFile string `short:"o" name:"output" help:"The file will contain Json records converted from the input MARC records." type:"file"`
+}
+
 func main() {
+	ctx := kong.Parse(&CLI,
+		kong.Name("marc2json"),
+		kong.Description("Convert MARC records into Json records."),
+		kong.UsageOnError(),
+		kong.ConfigureHelp(kong.HelpOptions{
+			Compact: true,
+			Summary: true,
+		}))
+	fmt.Print(ctx.Command())
+	fmt.Print(CLI.InputFile)
+	fmt.Print(CLI.OutputFile)
 
-	var marcfile string
-	if len(os.Args) > 1 {
-		marcfile = os.Args[1]
-	}
-
-	if marcfile == "" {
-		showHelp()
-	}
+	var marcfile = CLI.InputFile
+	//var output = CLI.OutputFile
 
 	fi, err := os.Open(marcfile)
 	if err != nil {

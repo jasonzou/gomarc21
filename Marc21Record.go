@@ -51,7 +51,6 @@ func (rec Record) Title() string {
 
 // parse directory of a marc record
 func ParseDirectory(rawRec []byte) (dir []DirectoryEntry, err error) {
-	log.Print("Parse Directory")
 	for i := LEADER_LEN; rawRec[i] != END_OF_FIELD; i += 12 {
 		var entry DirectoryEntry
 
@@ -59,11 +58,8 @@ func ParseDirectory(rawRec []byte) (dir []DirectoryEntry, err error) {
 		if err != nil {
 			return nil, err
 		}
-		log.Print(entry)
-
 		dir = append(dir, entry)
 	}
-	log.Print("Parse Directory end")
 	return dir, nil
 }
 
@@ -175,7 +171,6 @@ func (rec Record) GetDatafields(tags string) (dfs []DataField) {
 // record structure
 func ParseRecord(rawRec []byte) (rec Record, err error) {
 
-	log.Print(rawRec)
 	rec = Record{}
 
 	rec.Leader, err = ParseLeader(rawRec[:24])
@@ -183,43 +178,25 @@ func ParseRecord(rawRec []byte) (rec Record, err error) {
 		log.Print(err)
 		return rec, err
 	}
-	log.Print(rec.Leader.String())
-	log.Print("Leader parsed ok")
 
 	rec.Entries, err = ParseDirectory(rawRec)
 	if err != nil {
-		log.Print(err)
 		return rec, err
 	}
-	log.Print("Directory Entries parsed ok")
 	for index, entry := range rec.Entries {
 		log.Print(index, entry)
 	}
 
 	baseDataAddress := rec.Leader.BaseAddressOfData
-	log.Print("base Data address is okay")
-
-	log.Print(baseDataAddress)
-	log.Print(rawRec)
 	rec.ControlFields, err = ParseControlFields(rawRec, baseDataAddress, rec.Entries)
 	if err != nil {
 		return rec, err
 	}
-	log.Print("control fields is okay")
-	for _, cf := range rec.ControlFields {
-		log.Print(cf.String())
-	}
-	log.Print("control fields is iiiokay")
 
 	rec.DataFields, err = ParseDataFields(rawRec, baseDataAddress, rec.Entries)
 	if err != nil {
 		return rec, err
 	}
-	log.Print("data fields is okay")
-	for _, df := range rec.DataFields {
-		log.Print(df.String())
-	}
-	log.Print("control fields is iiiokay")
 
 	return rec, nil
 }
@@ -238,7 +215,6 @@ func ReadRecord(reader io.Reader) (record Record, err error) {
 	}
 
 	recordLength, err := strconv.Atoi(string(data[0:5]))
-	log.Print(recordLength)
 	if err != nil {
 		return record, errors.New("the record length is wrong")
 	}
@@ -246,18 +222,14 @@ func ReadRecord(reader io.Reader) (record Record, err error) {
 
 	n, err = io.ReadFull(reader, tmpRecord)
 	if err != nil {
-		log.Print(err)
 		return record, errors.New("reading a whole record errors")
 	}
 
 	if n != recordLength-5 {
-		log.Print(err)
 		return record, errors.New("the record is too short not a complete record")
 	}
-	log.Print(tmpRecord)
 
 	rawRecord := append(data, tmpRecord...)
-	log.Print(rawRecord)
 
 	record, err = ParseRecord(rawRecord)
 	if err != nil {

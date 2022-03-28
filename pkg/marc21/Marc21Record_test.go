@@ -39,6 +39,11 @@ func TestAllRecordsInFile(test *testing.T) {
 		fmt.Print(rec.Leader.RecordLength)
 	}
 
+	test.Log(i, " records")
+	//	var Mish int = 5
+	//var Mash int = 7
+	//assert.NotEqual(test, Mish, Mash, "Outputs should not be the same")
+
 }
 
 func TestMultipleRecords(test *testing.T) {
@@ -162,7 +167,6 @@ func TestParseRecord(test *testing.T) {
 	=151  \\$aBaffin Bay
 	=667  \\$aCSH3.
 	=751  \6$aBaffin, Baie de`
-	fmt.Print(exp)
 	data := openTestMARC(test)
 	defer data.Close()
 
