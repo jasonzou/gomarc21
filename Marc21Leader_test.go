@@ -10,8 +10,8 @@ func TestNewLeader(t *testing.T) {
 		t.Log("Record Length should be 350, but got", result.RecordLength)
 		t.Error("Record Length is ", result.RecordLength)
 	}
-	if result.Raw() != "00350cz  a2200157n  4500" {
-		t.Error("TestNewLeader is ", result.Raw())
+	if result.GetRaw() != "00350cz  a2200157n  4500" {
+		t.Error("TestNewLeader is ", result.GetRaw())
 	}
 
 }

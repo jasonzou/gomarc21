@@ -78,7 +78,7 @@ func (l Leader) String() string {
 	return fmt.Sprintf("=LDR  %s", string(l.raw))
 }
 
-func (l Leader) Raw() string {
+func (l Leader) GetRaw() string {
 	return string(l.raw)
 }
 

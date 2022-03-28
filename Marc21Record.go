@@ -14,13 +14,17 @@ func (rec Record) GetRaw() string {
 	return string(rec.raw)
 }
 
+func (rec Record) RecordAsMrk() (string, error) {
+	return rec.GetMrk(), nil
+}
+
 func (rec Record) GetMrk() string {
-	str := rec.Leader.String()
+	str := rec.Leader.String() + "\n"
 	for _, cf := range rec.ControlFields {
-		str = str + cf.String()
+		str = str + cf.String() + "\n"
 	}
 	for _, df := range rec.DataFields {
-		str = str + df.String()
+		str = str + df.String() + "\n"
 	}
 	return str
 }

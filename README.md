@@ -26,6 +26,7 @@ Another golang implementation of MARC 21.
 
 ## Revision History
 
+- version 0.0.8, cmd added. March 28,2022
 - March 27, 2022 version 0.0.7, recordAsJson is working. This approach may need to be revisited later.
 - March 25, 2022 version 0.0.6, recordAsXml is working; reflect Tag
 - March 24, 2022 version 0.0.5, more tests

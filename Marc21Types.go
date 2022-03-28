@@ -18,8 +18,8 @@ type Tag string
 
 // A MARC Record Set is for containing zero or more MARC records
 type Collection struct {
-	Name    xml.Name  `xml:"collection"`
-	Records []*Record `xml:"record"`
+	Name    xml.Name    `xml:"collection"`
+	Records []XmlRecord `xml:"record"`
 }
 
 // Controlfield contains a controlfield entry
